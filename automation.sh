@@ -26,3 +26,9 @@ sudo chmod 777 $FILE
 sudo ls -ltrh /tmp/*tar | awk -F '[ -.]' '{print $16"-"$17, "\t" $18"-"$19,"\t" $20,"\t" $10}' >> /var/www/html/inventory.html
 sudo rm -rf /tmp/*.tar
 fi
+sudo crontab -l
+if [ $? != 0 ]
+then
+sudo echo "* * * * * root /root/Automation_Project/automation.sh" > /etc/cron.d/automation
+sudo crontab /etc/cron.d/automation
+fi
